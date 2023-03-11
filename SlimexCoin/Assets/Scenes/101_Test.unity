@@ -1119,8 +1119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 3
-  JumpForce: 3
-  isJump: 0
-  isHurt: 0
-  isDead: 0
+  JumpForce: 5
+  maxJumpForce: 10
+  holdTime: 2
   animator: {fileID: 1532975562}
