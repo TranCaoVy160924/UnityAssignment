@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     public float MovementSpeed = 3;
     public float JumpForce = 5;
     private bool isJump;
-    public float jumpStartTime = 0.25f;
+    public float jumpStartTime = 0.3f;
     private float jumpTime;
 
     bool facingRight = true;
