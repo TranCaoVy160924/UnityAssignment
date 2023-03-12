@@ -7,6 +7,7 @@ using System;
 public class Movement : MonoBehaviour
 {
     public static event Action onPlayerDeath;
+    public static event Action onPlayerWin;
 
     public float MovementSpeed = 3;
     public float JumpForce = 5;
@@ -50,12 +51,6 @@ public class Movement : MonoBehaviour
 
         //set yVelocity 
         animator.SetFloat("yVelocity", _rigidbody.velocity.y);
-
-        //check win
-        if (isWin)
-        {
-
-        }
     }
 
     //check landing
@@ -79,6 +74,7 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "Goal")
         {
             isWin = true;
+            onPlayerWin?.Invoke();
         }
 
         if (collision.gameObject.tag == "Coin")
