@@ -10,15 +10,15 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Background
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Tilemap
+  - Waterfall
+  - Grass
+  - Win Flag
+  - Coin
+  - Enemy
   - 
   - 
   - 
@@ -42,4 +42,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3227262433
+    locked: 0
+  - name: Tilemap
+    uniqueID: 1463059791
+    locked: 0
+  - name: Waterfall
+    uniqueID: 1473325859
+    locked: 0
+  - name: Grass
+    uniqueID: 3223790575
+    locked: 0
+  - name: Win Flag
+    uniqueID: 1308908179
+    locked: 0
+  - name: Coin
+    uniqueID: 3758750107
+    locked: 0
+  - name: Enemy
+    uniqueID: 2554665687
     locked: 0
