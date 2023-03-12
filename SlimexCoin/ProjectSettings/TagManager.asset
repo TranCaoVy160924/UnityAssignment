@@ -52,9 +52,6 @@ TagManager:
   - name: Tilemap
     uniqueID: 1463059791
     locked: 0
-  - name: Waterfall
-    uniqueID: 1473325859
-    locked: 0
   - name: Grass
     uniqueID: 3223790575
     locked: 0
@@ -69,4 +66,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 780861675
+    locked: 0
+  - name: Waterfall
+    uniqueID: 1473325859
     locked: 0
