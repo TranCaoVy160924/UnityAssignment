@@ -10,16 +10,22 @@ public class Movement : MonoBehaviour
     public static event Action onPlayerWin;
 
     public float MovementSpeed = 3;
-    public float JumpForce = 5;
+    public float JumpForce = 3;
     private bool isJump;
     
-    public float jumpStartTime = 0.3f;
+    public float jumpStartTime = 0.5f;
     private float jumpTime;
+    private bool isJumping;
 
     private bool isWin;
-
     private bool isDead;
     private int Point;
+
+    //sound
+    [SerializeField] private AudioSource jumpSound;
+    [SerializeField] private AudioSource CoinGain;
+    [SerializeField] private AudioSource Dead;
+    [SerializeField] private AudioSource Win;
 
     bool facingRight = true;
 
@@ -32,12 +38,13 @@ public class Movement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         Point = 0;
         isDead = false;
+        isWin = false;
     }
 
     void Update()
     {
 
-        if (!isDead)
+        if (!isDead || !isWin)
         {
             //move
             var movement = Input.GetAxisRaw("Horizontal");
@@ -51,6 +58,12 @@ public class Movement : MonoBehaviour
 
         //set yVelocity 
         animator.SetFloat("yVelocity", _rigidbody.velocity.y);
+
+        //dead
+        if (isDead) Dead.Play();
+
+        //win
+        if (Win) Win.Play();
     }
 
     //check landing
@@ -64,10 +77,8 @@ public class Movement : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy")
         {
-            isWin = false;
             isDead = true;
-            animator.SetBool("isDead", isDead);
-            Destroy(_spriteCollider);
+            animator.SetBool("isDead", isDead);          
             onPlayerDeath?.Invoke();
         }
 
@@ -79,6 +90,7 @@ public class Movement : MonoBehaviour
 
         if (collision.gameObject.tag == "Coin")
         {
+            CoinGain.Play();
             Point++;
         }
 
@@ -107,17 +119,29 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && isJump == false)
         {
+            isJumping = true;
+            jumpSound.Play();
             jumpTime = jumpStartTime;
             _rigidbody.velocity = Vector2.up * JumpForce;
+
         }
         
-        if(Input.GetKey(KeyCode.UpArrow) && isJump == true)
+        if(Input.GetKey(KeyCode.UpArrow) && isJumping == true)
         {
             if(jumpTime> 0)
             {
                 _rigidbody.velocity = Vector2.up * JumpForce;
                 jumpTime -= Time.deltaTime;
             }
+            else
+            {
+                isJumping = false;
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            isJumping = false;
         }
     }
 }
