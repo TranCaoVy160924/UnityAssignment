@@ -43,8 +43,7 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-
-        if (!isDead || !isWin)
+        if (!isDead && !isWin)
         {
             //move
             var movement = Input.GetAxisRaw("Horizontal");
@@ -58,12 +57,6 @@ public class Movement : MonoBehaviour
 
         //set yVelocity 
         animator.SetFloat("yVelocity", _rigidbody.velocity.y);
-
-        //dead
-        if (isDead) Dead.Play();
-
-        //win
-        if (Win) Win.Play();
     }
 
     //check landing
@@ -78,13 +71,15 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             isDead = true;
-            animator.SetBool("isDead", isDead);          
+            animator.SetBool("isDead", isDead);
+            Dead.Play();
             onPlayerDeath?.Invoke();
         }
 
         if (collision.gameObject.tag == "Goal")
         {
             isWin = true;
+            Win.Play();
             onPlayerWin?.Invoke();
         }
 

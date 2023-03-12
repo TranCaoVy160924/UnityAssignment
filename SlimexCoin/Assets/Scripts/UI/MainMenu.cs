@@ -3,19 +3,23 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private AudioSource ButtonClickSound;
+
     public void GoToSence(string senceName)
     {
+        ButtonClickSound.Play();
         SceneManager.LoadScene(senceName);
     }
 
     public void QuitGame()
     {
+        ButtonClickSound.Play();
         Application.Quit();
-        Debug.Log("Quit");
     }
 
     public void RestartLevel()
     {
+        ButtonClickSound.Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
