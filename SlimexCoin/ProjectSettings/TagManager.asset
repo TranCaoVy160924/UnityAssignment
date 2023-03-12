@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Slime
   - Ground
+  - Enemy
+  - Coin
+  - Goal
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - Win Flag
   - Coin
   - Enemy
-  - 
+  - Player
   - 
   - 
   - 
@@ -63,4 +66,7 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 2554665687
+    locked: 0
+  - name: Player
+    uniqueID: 780861675
     locked: 0
