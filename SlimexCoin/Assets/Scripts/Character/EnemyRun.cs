@@ -30,10 +30,20 @@ public class EnemyRun : MonoBehaviour
         if (movingRight)
         {
             transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, transform.position.y, transform.position.z);
+            Flip();
         }
         else
         {
             transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, transform.position.y, transform.position.z);
+            Flip();
+
+        }
+
+        void Flip()
+        {
+            Vector3 currentScale = gameObject.transform.localScale;
+            currentScale.x *= -1;
+            gameObject.transform.localScale = currentScale;
         }
     }
 }

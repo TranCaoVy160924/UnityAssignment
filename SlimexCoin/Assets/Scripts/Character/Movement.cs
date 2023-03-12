@@ -21,6 +21,8 @@ public class Movement : MonoBehaviour
     private bool isDead;
     private int Point;
 
+    private bool isSoundOn = OnOffMusic.isOn;
+
     //sound
     [SerializeField] private AudioSource jumpSound;
     [SerializeField] private AudioSource CoinGain;
@@ -72,21 +74,23 @@ public class Movement : MonoBehaviour
         {
             isDead = true;
             animator.SetBool("isDead", isDead);
-            Dead.Play();
+            if(isSoundOn) Dead.Play();
             onPlayerDeath?.Invoke();
         }
 
         if (collision.gameObject.tag == "Goal")
         {
             isWin = true;
-            Win.Play();
+            if (isSoundOn)  Win.Play();
             onPlayerWin?.Invoke();
         }
 
         if (collision.gameObject.tag == "Coin")
         {
-            CoinGain.Play();
+            if (isSoundOn) CoinGain.Play();
             Point++;
+            Score.ScoreValue = Point;
+            ShowCoin.ScoreValue = Point;
         }
 
     }
@@ -115,7 +119,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow) && isJump == false)
         {
             isJumping = true;
-            jumpSound.Play();
+            if (isSoundOn) jumpSound.Play();
             jumpTime = jumpStartTime;
             _rigidbody.velocity = Vector2.up * JumpForce;
 
