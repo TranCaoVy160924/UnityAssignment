@@ -19,5 +19,18 @@ public class Score : MonoBehaviour
     void Update()
     {
         score.text = "Coins : " + ScoreValue;
+        if (Movement.isDead)
+        {
+            score.gameObject.SetActive(false);
+        }
+        else
+        if (Movement.isWin)
+        {
+            score.gameObject.SetActive(false);
+        }
+        else
+        {
+            score.gameObject.SetActive(true);
+        }
     }
 }

@@ -17,8 +17,8 @@ public class Movement : MonoBehaviour
     private float jumpTime;
     private bool isJumping;
 
-    private bool isWin;
-    private bool isDead;
+    public static bool isWin;
+    public static bool isDead;
     private int Point;
 
     private bool isSoundOn = OnOffMusic.isOn;
